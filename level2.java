@@ -11,55 +11,53 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 import java.util.Scanner;
 
-public class level2 {
+public class Level2Game {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int rounds = 3;
         int score = 0;
 
         System.out.println("Good job! You've made it to Level 2!");
-        System.out.println("You'll solve " + rounds + " algebra questions. Remember to type your answer as an integer!\n");
+        System.out.println("You'll solve " + rounds + " algebra questions.");
+        System.out.println("Remember to type your answer as an integer!\n");
 
         // Round 1
-        System.out.println("Round 1: What are the zero(s) of this equation?  x^2 + 2x + 1");
-        System.out.print("Your answer: ");
-        while (true) {
+        boolean correct = false;
+        while (!correct) {
+            System.out.println("Question 1: What are the zero(s) of this equation? x^2 + 2x + 1");
+            System.out.print("Your answer: ");
             if (scanner.hasNextInt()) {
-                int answer = scanner.nextInt();
-                if (answer == -1) {
-                    score+=5;
-                    System.out.println("Great Job! Let's move to the next round\n");
-                    break;
+                int userAnswer = scanner.nextInt();
+                if (userAnswer == -1) {
+                    System.out.println("Correct! Great job staying focused!");
+                    score += 5;
+                    correct = true;
+                } else {
+                    System.out.println("Nice try! Keep going, you're doing great!");
+                    score -= 2;
+                    if (score < 0) score = 0;
                 }
-                else if (answer != -1){
-                    if (score>=2){
-                        score-=2;
-                    }
-                    System.out.println("Nice try! Keep going!\n");
-                }
-        
             } else {
                 System.out.println("Please enter a valid integer.");
-                scanner.next(); // consume invalid input
+                scanner.next(); // clear the invalid input
             }
         }
 
         // Round 2
-        System.out.println("Round 2: Solve for x: x^2 - 5x + 6 = 0");
-        System.out.print("Your answer (give one of the zeros): ");
-        while (true) {
+        correct = false;
+        while (!correct) {
+            System.out.println("Question 2: Solve for x: x^2 - 9 = 0");
+            System.out.print("Your answer: ");
             if (scanner.hasNextInt()) {
-                int answer = scanner.nextInt();
-                if (answer == 2 || answer == 3) {
-                    score+=5;
-                    System.out.println("Great Job! Let's move to the next round\n");
-                    break;
-                }
-                else if (answer != 2 || answer!= 3){
-                    if (score>=2){
-                        score-=2;
-                    }
-                    System.out.println("Nice try! Keep going!\n");
+                int userAnswer = scanner.nextInt();
+                if (userAnswer == 3 || userAnswer == -3) {
+                    System.out.println("Correct! You're learning fast!");
+                    score += 5;
+                    correct = true;
+                } else {
+                    System.out.println("That's okay! Keep trying!");
+                    score -= 2;
+                    if (score < 0) score = 0;
                 }
             } else {
                 System.out.println("Please enter a valid integer.");
@@ -68,21 +66,20 @@ public class level2 {
         }
 
         // Round 3
-        System.out.println("Round 3: Solve for x: x^2 - 4 = 0");
-        System.out.print("Your answer (give one of the zeros): ");
-        while (true) {
+        correct = false;
+        while (!correct) {
+            System.out.println("Question 3: Solve for x: x^2 - 4x + 3 = 0");
+            System.out.print("Your answer: ");
             if (scanner.hasNextInt()) {
-                int answer = scanner.nextInt();
-                if (answer == 2 || answer == -2) {
-                    score+=5;
-                    System.out.println("Awesome job! You're doing amazing!\n");
-                    break;
-                }
-                else if (answer != 2 || answer!= -2){
-                    if (score>=2){
-                        score-=2;
-                    }
-                    System.out.println("Nice try! Keep going!\n");
+                int userAnswer = scanner.nextInt();
+                if (userAnswer == 1 || userAnswer == 3) {
+                    System.out.println("You're on fire! Great work!");
+                    score += 5;
+                    correct = true;
+                } else {
+                    System.out.println("No worries! You got this!");
+                    score -= 2;
+                    if (score < 0) score = 0;
                 }
             } else {
                 System.out.println("Please enter a valid integer.");
@@ -90,8 +87,10 @@ public class level2 {
             }
         }
 
-        System.out.println("You've completed Level 2! Well done!");
-        System.out.println("Your score: " + score + " out of " + rounds);
+        // Final score output
+        System.out.println("\nAll done! Awesome effort!");
+        System.out.println("Your score: " + score + " out of " + (rounds * 5));
         scanner.close();
     }
 }
+
